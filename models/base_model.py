@@ -2,6 +2,7 @@
 '''UUID for each request'''
 from uuid import uuid4
 from datetime import datetime
+import models
 
 class BadeModel:
     def __init__(self, *args, **kwargs):
