@@ -1,5 +1,7 @@
 #!/usr/bin/python3
+import os.path
 import json
+import os
 from models.base_model import BaseModel
 import models
 from models.user import User
@@ -41,3 +43,31 @@ class FileStorage:
                     self.new(eval(obj['__class__'])(**obj))
         except Exception:
             return
+
+    def to_dict(obj):
+        """Serializes datetime objects to JSON
+        """
+        new_dict = obj.copy()
+
+        new_dict["created_at"] = new_dict["created_at"].strftime(
+            "%Y-%m-%dT%H:%M:%S.%f")
+        new_dict["updated_at"] = new_dict["updated_at"].strftime(
+            "%Y-%m-%dT%H:%M:%S.%f")
+
+        return new_dict
+
+    @staticmethod
+    def from_dict(obj):
+        """Deserializes JSON object to datetime object
+        """
+        new_dict = obj.copy()
+
+        new_dict["created_at"] = datetime.strptime(new_dict["created_at"],
+                                                   "%Y-%m-%dT%H:%M:%S.%f")
+        new_dict["updated_at"] = datetime.strptime(new_dict["updated_at"],
+                                                   "%Y-%m-%dT%H:%M:%S.%f")
+
+        if hasattr(new_dict, "__class__"):
+            del new_dict["__class__"]
+
+        return new_dict
