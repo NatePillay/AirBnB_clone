@@ -24,7 +24,8 @@ class BaseModel:
 
     def __str__(self):
         ''' defines custom string representation of object'''
-        return f'[{self.__class__.__name__}] ({self.id}) {self.__dict__}'
+        return "[{}] ({}) {}".\
+                format(type(self).__name__, self.id, self.__dict__)
 
     def save(self):
         self.updated_as = datetime.now()
@@ -36,5 +37,5 @@ class BaseModel:
         my_dict = self.__dict__.copy()
         my_dict['created_at'] = self.created_at.isoformat()
         my_dict['updated_at'] = self.updated_at.isoformat()
-        my_dict['__class__'] = self.__class__.__name__
+        my_dict['__class__'] = type(self).__name__
         return my_dict

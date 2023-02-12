@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from json import dump, load
+import json
 from models.base_model import BaseModel
 import models
 from models.user import User
@@ -26,11 +26,9 @@ class FileStorage:
 
     def save(self):
         '''serializing obects into JSON'''
-        objects = FileStorage.__objects
-        dict_from_obj = {key: obj.to_dict() for key, obj in objects.items()}
-
-        with open(FileStorage.__file_path, 'w') as file:
-            dump(dict_from_obj, file)
+        with open(FileStorage.__file_path, "w", encoding="utf-8") as f:
+            d = {k: v.to_dict() for k, v in FileStorage.__objects.items()}
+            json.dump(d, f)
 
     def reload(self):
         '''deserializing JSON data into objects
