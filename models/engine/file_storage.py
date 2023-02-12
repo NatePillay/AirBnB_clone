@@ -8,6 +8,7 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+
 class FileStorage:
     '''Defines file storage class'''
     __file_path = 'file.json'
@@ -22,8 +23,7 @@ class FileStorage:
     def new(self, obj):
         '''set an object in the dictionary to a key = 
         string rep of object class name cncate with ID'''
-        key = '{} {}'.format(self.__class__.__name__, self.id)
-        self.__obects[key] = obj
+        FileStorage.__objects[f'{obj.__class__.__name__}.{obj.id}'] = obj
 
     def save(self):
         '''serializing obects into JSON'''
