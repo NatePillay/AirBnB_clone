@@ -5,7 +5,7 @@ from datetime import datetime
 import models
 
 
-class BadeModel:
+class BaseModel:
     def __init__(self, *args, **kwargs):
         '''create a new base model class 3
         attributes, taking no. of position and keyword args'''
