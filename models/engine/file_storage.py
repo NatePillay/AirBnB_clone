@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from json import dump, load
 from models.base_model import BaseModel
+import models
 from models.user import User
 from models.state import State
 from models.city import City

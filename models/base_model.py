@@ -10,14 +10,14 @@ class BadeModel:
         '''create a new base model class 3
         attributes, taking no. of position and keyword args'''
 
-        if kwargs = {}:
+        if kwargs == {}:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
             models.storage.new(self)
 
         for key, value in kwargs.items():
-            for key in ['created_as', 'updated_at'):
+            if key in ['created_as', 'updated_at']:
                 self.__dict__[key] = datetime.fromisoformat(value)
             elif key != '__close__':
                 self.__dict__[key] = value
@@ -37,4 +37,4 @@ class BadeModel:
         my_dict['created_at'] = self.created_at.isoformat()
         my_dict['updated_at'] = self.updated_at.isoformat()
         my_dict['__class__'] = self.__class__.__name__
-        return my_dict
+        return my_idict
