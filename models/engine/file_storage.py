@@ -14,14 +14,12 @@ class FileStorage:
     __file_path = 'file.json'
     __objects = {}
 
-
-
     def all(self):
         '''returns the dictionary of all created objects'''
         return FileStorage.__objects
 
     def new(self, obj):
-        '''set an object in the dictionary to a key = 
+        '''set an object in the dictionary to a key =
         string rep of object class name cncate with ID'''
         FileStorage.__objects[f'{obj.__class__.__name__}.{obj.id}'] = obj
 
@@ -31,7 +29,7 @@ class FileStorage:
         dict_from_obj = {key: obj.to_dict() for key, obj in objects.items()}
 
         with open(FileStorage.__file_path, 'w') as file:
-                        dump(dict_from_obj, file)
+            dump(dict_from_obj, file)
 
     def reload(self):
         '''deserializing JSON data into objects

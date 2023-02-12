@@ -4,9 +4,11 @@ from uuid import uuid4
 from datetime import datetime
 import models
 
+
 class BadeModel:
     def __init__(self, *args, **kwargs):
-        '''create a new base model class 3 attributes, taking no. of position and keyword args'''
+        '''create a new base model class 3
+        attributes, taking no. of position and keyword args'''
 
         if kwargs = {}:
             self.id = str(uuid.uuid4())
@@ -20,18 +22,17 @@ class BadeModel:
             elif key != '__close__':
                 self.__dict__[key] = value
 
-
     def __str__(self):
         ''' defines custom string representation of object'''
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return f'[{self.__class__.__name__}], ({self.id}], {self.__dict__}'
 
     def save(self):
         self.updated_as = datetiime.now()
         models.storage.save()
 
-
     def to_dict(self):
-        '''method to convert an instance of BaseModel class into dict rep of object'''
+        '''method to convert an instance of
+        BaseModel class into dict rep of object'''
         my_dict = self.__dict__.copy()
         my_dict['created_at'] = self.created_at.isoformat()
         my_dict['updated_at'] = self.updated_at.isoformat()
