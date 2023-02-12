@@ -37,7 +37,7 @@ class FileStorage:
         try block used to handle exceptions
         eval takes string argument and returns obj'''
         try:
-            with open(self.__file_path, 'r') as file:
+            with open(FileStorage.__file_path) as file:
                 dict_from_json = load(file)
                 for obj in dict_from_json.values():
                     self.new(eval(obj['__class__'])(**obj))
